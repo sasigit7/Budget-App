@@ -1,73 +1,65 @@
-/* IMPLEMENTING THE MODULE PATTERN USING IIFE's AND CLOSURES */
-
-
-/* Immediately-Invoked Function Expression (IIFE)- It is an anonymous function that executes immediately right after it's created. 
-       Syntax::
-           ES5 -> ( function (foo) { 
-                           return foo;
-                           }) ('foo value');
-           ES6 -> ( (foo) => foo ) ('foo value'); 
-       a) First pair of parantheses ( function (foo) { return foo; } ) OR ( (foo) => foo )turns the code within 
-          (in this case, a function) into an expression.
-       b) Second pair of parantheses ('foo value'); calls the function that results from that evaluated expression.
-       c) This pattern is often used to avoid polluting the Global scope, because all the variables used inside the IIFE
-          (like in any other normal function ) are not visible outside its scope. In other words, it is useful to avoid declaring 
-          variables in the Global Scope. It should use with the conditional operator and should use in Closures to prevent fold over.
-          
-     */
-
-/* Module that handles the Budget Data  */
+// BUDGET CONTROLLER 
 
 var budgetController = (function () {
 
-    // Private data that are not visible outside this Scope and can only be accessible from inside. 
+        // Some Code
 
-    var x = 27; // A variable Declaration
-
-    var add = function (a) { // A function Declaration
-        return x + a;
-    }
-
-    return {
-        // Public data methods will have access to Private data (in this case, above variable and function), so that other functions 
-        // outside this anonymous function can have access to them. Since this method is also a part of anonymous function, 
-        // we use the "return" keyword to achieve the desired outcome. This is called Data Encapsulation. 
-        // Here we used publicTest method.
-        publicTest: function (b) {
-            // console.log(add(b));
-
-            return add(b);
-        }
-    }
-
-})();
+    })
+    ();
 
 
-/* Module that handles the UI data */
+
+
+
+//UI CONTROLLER 
 
 var UIController = (function () {
 
-    // some code
-
-})();
-
-
-/* Module that connects above two independent modules */
-
-var controller = (function (budgetCtlr, UICtlr) { // Modules can also have arguments bcuz they are just function expressions. 
-
-        // budgetController.publicTest(); We could have use like this but it's not a good practise bcuz it will be less independent 
-        // and also if we got to change the name of the module, then we have to do it all over the code which is a time consuming thing.   
-
-        var z = budgetCtlr.publicTest(7);
-
-        // To print this out in console, We use return method.
-
-        return {
-            anotherPublicTest: function () {
-                console.log(z);
-            }
-        }
+        // Some Code
 
     })
-    (budgetController, UIController);
+    ();
+
+
+
+
+//GLOBAL APP CONTROLLER 
+var controller = (function (budgetCtrl, UICtrl) {
+
+    var ctrlAddItem = function () {
+        // 1. Get the field input data
+        // 2. Add the item to the budget controller
+        // 3. Add the item to the UI
+        // 4. Calculate the Budget
+        // 5. Display the Budget on the UI.
+
+        console.log("it work's.");
+    }
+
+    /*
+    document.querySelector('.add__btn').addEventListener('click', function () {
+        
+        // console.log('Button was clicked');
+    });
+    */
+
+    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+
+
+    document.addEventListener('keypress', function (event) { // We can just use letter 'e' as well in place of word 'event'.
+
+        // console.log(event); Press any key on the keyboard 
+
+        if (event.keyCode === 13 || event.which === 13) { // We can use either of them or both (keyCode , which) 
+
+            // console.log('ENTER WAS PRESSED.');   
+
+            ctrlAddItem();
+
+        }
+
+    });
+
+})
+
+(budgetController, UIController);

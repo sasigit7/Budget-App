@@ -1,8 +1,50 @@
-// BUDGET CONTROLLER 
+// BUDGET CONTROLLER - keeps track of all the incomes and expenses. 
 
 var budgetController = (function () {
+        // We use Function Constructor to create lots of Objects and it usually starts with a CAPITAL letter.
 
-        // Some Code
+        var Expense = function (id, description, value) {
+            this.id = id;
+            this.description = description;
+            this.value = value;
+        };
+
+        var Income = function (id, description, value) {
+            this.id = id;
+            this.description = description;
+            this.value = value;
+        };
+
+
+        //If a user want to input 10 incomes, then we would create 10 income Objects. The best solution to store these objects 
+        // is storing them into an array. 
+
+        /*
+       var allExpenses = [];
+       var allIncomes = [];
+       var totalExpenses = 0;
+      
+        */
+
+        // Both of these arrays will store all instances of either expenses or incomes.
+        /* 
+         var data = {
+            allExpenses: [], 
+            allIncomes: []
+        } 
+        */
+        // Can also be written as ...
+        var data = {
+            allItems: {
+                exp: [],
+                inc: []
+            },
+
+            totals: {
+                exp: 0,
+                inc: 0
+            }
+        }
 
     })
     ();
